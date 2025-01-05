@@ -3,7 +3,7 @@ package com.gk.service;
 import java.util.List;
 
 import com.gk.dto.DoctorDto;
-
+import com.gk.entity.Doctor;
 import com.gk.exception.EmployeeException;
 
 public interface DoctorService {

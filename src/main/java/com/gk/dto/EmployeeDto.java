@@ -2,23 +2,13 @@ package com.gk.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gk.entity.BloodGroup;
 import com.gk.entity.Gender;
 import com.gk.entity.MaritialStatus;
 import com.gk.entity.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +22,13 @@ import lombok.ToString;
 @Setter
 @ToString
 
+
 public class EmployeeDto {
+	
+	
+	
+	
+	
 	
 	
     private Long employeeId;
@@ -55,7 +51,7 @@ public class EmployeeDto {
    
     private String department;
     
-   
+  //  @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     
     private Gender gender;
@@ -68,7 +64,7 @@ public class EmployeeDto {
    
     private Role role;
     
-   
+  //  @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfJoining;
     
    
@@ -103,7 +99,7 @@ public class EmployeeDto {
    
     
     
-    
+   
     
 	
 	

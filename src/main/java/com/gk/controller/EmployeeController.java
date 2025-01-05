@@ -73,7 +73,7 @@ public class EmployeeController {
 		}
 	}
 	
-	@DeleteMapping("/remove/{empId}")
+	@DeleteMapping("/remove/employee/{empId}")
 	public ResponseEntity<Long> removeEmployee(@PathVariable Long empId)
 	{
 		try

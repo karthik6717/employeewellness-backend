@@ -12,6 +12,7 @@ import com.gk.service.ChallengeRegistrationServiceImpl;
 
 @RestController
 @RequestMapping("/api/employeewellness")
+@CrossOrigin("*")
 public class ChallengeRegistrationController {
 
     @Autowired
@@ -19,7 +20,7 @@ public class ChallengeRegistrationController {
 
     // Register an employee for a challenge
     
-    @PostMapping("/register/{employeeId}/{challengeId}")
+    @PostMapping("/challengeregister/{employeeId}/{challengeId}")
     public ResponseEntity<String> registerForChallenge(
             @PathVariable Long employeeId,
             @PathVariable Long challengeId) {
