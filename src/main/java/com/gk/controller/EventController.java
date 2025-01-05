@@ -14,14 +14,15 @@ import com.gk.exception.EmployeeException;
 import com.gk.service.EventServiceImpl;
 
 @RestController
-@RequestMapping("/api/employeewellness/events")
+@RequestMapping("/api/employeewellness")
+@CrossOrigin("*")
 public class EventController {
 
     @Autowired
     private EventServiceImpl eventService;
 
     // Get event details by ID
-    @GetMapping("/{eventId}")
+    @GetMapping("/getEventById/{eventId}")
     public ResponseEntity<EventDto> getEventById(@PathVariable Long eventId) {
         try {
             EventDto event = eventService.getEventById(eventId);
@@ -32,7 +33,7 @@ public class EventController {
     }
 
     // Get all events
-    @GetMapping
+    @GetMapping("/getAllEvents")
     public ResponseEntity<List<EventDto>> getAllEvents() {
         try {
             List<EventDto> events = eventService.getAllEvents();
@@ -43,7 +44,7 @@ public class EventController {
     }
 
     // Add a new event
-    @PostMapping
+    @PostMapping("/addEvent")
     public ResponseEntity<String> addEvent(@RequestBody EventDto eventDto) {
         try {
             eventService.addEvent(eventDto);
@@ -54,7 +55,7 @@ public class EventController {
     }
 
     // Remove an event by ID
-    @DeleteMapping("/{eventId}")
+    @DeleteMapping("/deleteEvent/{eventId}")
     public ResponseEntity<String> removeEvent(@PathVariable Long eventId) {
         try {
             eventService.removeEvent(eventId);
@@ -65,12 +66,12 @@ public class EventController {
     }
 
     // Update an event
-    @PutMapping("/{eventId}")
-    public ResponseEntity<String> updateEvent(@PathVariable Long eventId, @RequestBody EventDto eventDto) {
+    @PutMapping("/updateEvent")
+    public ResponseEntity<EventDto> updateEvent( @RequestBody EventDto eventDto) {
         try {
-            eventDto.setEventId(eventId); // Ensure event ID is set for updating
-            eventService.updateEvent(eventDto);
-            return ResponseEntity.ok("Event updated successfully.");
+         
+           // eventService.updateEvent(eventDto);
+            return new ResponseEntity<EventDto>(eventService.updateEvent(eventDto),HttpStatus.OK);
         } catch (EmployeeException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

@@ -14,6 +14,7 @@ import com.gk.service.EventRegistrationServiceImpl;
 
 @RestController
 @RequestMapping("/api/eventRegistration")
+@CrossOrigin("*")
 public class EventRegistrationController {
 
     @Autowired

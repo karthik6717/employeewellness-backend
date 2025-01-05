@@ -1,27 +1,19 @@
 package com.gk.entity;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import jakarta.annotation.Generated;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import jakarta.persistence.Version;
 
 @Entity
 @NoArgsConstructor
@@ -29,7 +21,7 @@ import lombok.ToString;
 @Getter 
 @Setter
 @ToString
-@Table(name="EmployeeWellness_batch2_Doctor_karthikg")
+@Table(name="EmployeeWellness_batch2_Doctor_table_karthikg")
 public class Doctor {
 	
 	@Id
@@ -47,16 +39,26 @@ public class Doctor {
 	
 	@Column()
 	private String email;
+	@Column
 	private String hospitalAffilation;
+	@Column
 	private String location;
+	@Column
 	private LocalDateTime availableFrom;
 	// "2020-12-31T15:53:16"
+	@Column
 	private LocalDateTime availableTill;
+	@Column
 	private String qualification;
 	
-	//mapping
-	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
-	private List<DoctorConsultant> doctorList;
+	
+//	@Version
+//	@Column(name="version")
+//	private Integer version;
+	
+//	//mapping
+//	@OneToMany(mappedBy="doctor",cascade=CascadeType.ALL)
+//	private List<DoctorConsultant> doctorList;
 
 	
 	

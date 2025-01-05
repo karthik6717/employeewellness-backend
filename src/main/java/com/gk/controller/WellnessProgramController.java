@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.gk.dto.WellnessProgramDto;
 import com.gk.entity.ProgramType;
@@ -23,6 +25,7 @@ import com.gk.service.WellnessProgramServiceImpl;
 
 @RestController
 @RequestMapping("/api/wellnessprogram")
+@CrossOrigin("*")
 public class WellnessProgramController {
 
     @Autowired
@@ -46,10 +49,23 @@ public class WellnessProgramController {
     }
 
     // Get all wellness programs
+//    @GetMapping("/getAllWellness")
+//    public ResponseEntity<List<WellnessProgramDto>> getAllWellness(@RequestParam String empId) throws EmployeeException {
+//        List<WellnessProgramDto> wellnessList = wellnessProgramService.getAllWellnessProgram();
+//        return ResponseEntity.ok(wellnessList);
+//    }
+    
     @GetMapping("/getAllWellness")
-    public ResponseEntity<List<WellnessProgramDto>> getAllWellness(@RequestParam String empId) throws EmployeeException {
+    public ResponseEntity<List<WellnessProgramDto>> getAllWellness()  {
+    	try
+    	{
         List<WellnessProgramDto> wellnessList = wellnessProgramService.getAllWellnessProgram();
-        return ResponseEntity.ok(wellnessList);
+        return new ResponseEntity<List<WellnessProgramDto>>(wellnessList,HttpStatus.OK);
+    	}
+    	catch(EmployeeException e)
+    	{
+    	 throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
+    	}
     }
 
     // Add a new wellness program

@@ -60,12 +60,15 @@ public class DoctorServiceImpl implements DoctorService {
 
 	@Override
 	public DoctorDto addDoctor(DoctorDto doctor) throws EmployeeException {
-		// TODO Auto-generated method stub
 		
+		
+		{
 			Doctor doc1= doctorRepo.save(DoctorUtils.dtoTOEntity(doctor));
-		
-            return DoctorUtils.EntityToDto(doc1);            
-        
+			return DoctorUtils.EntityToDto(doc1);            
+		}
+	
+
+            
 	}
 
 	@Override
