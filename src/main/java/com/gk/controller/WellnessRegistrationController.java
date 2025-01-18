@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import com.gk.dto.WellnessRegistrationDto;
 import com.gk.service.WellnessRegistrationServiceImpl;
 
 @RestController
-@RequestMapping("/wellnessRegistration")
+@RequestMapping("/api/wellnessRegistration")
 @CrossOrigin("*")
 public class WellnessRegistrationController {
 
@@ -23,9 +24,9 @@ public class WellnessRegistrationController {
     private WellnessRegistrationServiceImpl wellReg;
 
     // Method to register an employee for a wellness program
-    @GetMapping("/register/{employeeId}/{wellnessProgramId}")
-    public ResponseEntity<String> registerForWellnessProgram(@PathVariable("employeeId") Long employeeId, 
-                                                             @PathVariable("wellnessProgramId") Long wellnessProgramId) {
+    @PostMapping("/register/{employeeId}/{wellnessProgramId}")
+    public ResponseEntity<String> registerForWellnessProgram(@PathVariable Long employeeId, 
+                                                             @PathVariable Long wellnessProgramId) {
         boolean success = wellReg.registerForWellnessProgram(employeeId, wellnessProgramId);
 
         if (success) {
@@ -37,7 +38,7 @@ public class WellnessRegistrationController {
 
     // Method to get all wellness programs registered by an employee
     @GetMapping("/registeredWellnessPrograms/{employeeId}")
-    public ResponseEntity<List<WellnessRegistrationDto>> getRegisteredWellnessPrograms(@PathVariable("employeeId") Long employeeId) {
+    public ResponseEntity<List<WellnessRegistrationDto>> getRegisteredWellnessPrograms(@PathVariable Long employeeId) {
         List<WellnessRegistrationDto> registeredWellness = wellReg.getRegisteredWellnessByEmployeeId(employeeId);
 
         if (registeredWellness.isEmpty()) {
