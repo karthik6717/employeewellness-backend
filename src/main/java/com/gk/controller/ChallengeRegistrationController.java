@@ -30,7 +30,7 @@ public class ChallengeRegistrationController {
             return ResponseEntity.ok("Employee successfully registered for the challenge.");
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Registration failed. Employee may already be registered or an error occurred.");
+                    .body("Registration failed. Employee may be already registered.");
         }
     }
 
