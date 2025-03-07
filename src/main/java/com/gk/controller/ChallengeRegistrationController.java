@@ -30,7 +30,7 @@ public class ChallengeRegistrationController {
             return ResponseEntity.ok("Employee successfully registered for the challenge.");
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Registration failed. Employee may already be registered or an error occurred.");
+                    .body("Registration failed. Employee may be already registered.");
         }
     }
 
@@ -52,24 +52,24 @@ public class ChallengeRegistrationController {
     }
 
     // Complete challenges and add reward points
-    @PostMapping("/complete/{employeeId}/{challengeId}/{challengeStatus}")
-    public ResponseEntity<?> completeChallenges(
-            @PathVariable Long employeeId,
-            @PathVariable Long challengeId,
-            @PathVariable String challengeStatus) {
-        try {
-            challengeRegService.completeChallenges(employeeId, challengeId, challengeStatus);
-            List<ChallengeRegistrationDto> registeredChallenges = challengeRegService.getRegisteredChallengesStatus(employeeId);
-
-            return ResponseEntity.ok()
-                    .body(new ResponseWrapper(
-                            "Reward points added for completed challenges successfully!",
-                            registeredChallenges));
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorResponse(e.getMessage()));
-        }
-    }
+//    @PostMapping("/complete/{employeeId}/{challengeId}/{challengeStatus}")
+//    public ResponseEntity<?> completeChallenges(
+//            @PathVariable Long employeeId,
+//            @PathVariable Long challengeId,
+//            @PathVariable String challengeStatus) {
+//        try {
+//            challengeRegService.completeChallenges(employeeId, challengeId, challengeStatus);
+//            List<ChallengeRegistrationDto> registeredChallenges = challengeRegService.getRegisteredChallengesStatus(employeeId);
+//
+//            return ResponseEntity.ok()
+//                    .body(new ResponseWrapper(
+//                            "Reward points added for completed challenges successfully!",
+//                            registeredChallenges));
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body(new ErrorResponse(e.getMessage()));
+//        }
+//    }
 
     // Utility Classes for Response Wrapping
     static class ResponseWrapper {

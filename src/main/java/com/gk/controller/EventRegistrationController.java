@@ -21,7 +21,7 @@ public class EventRegistrationController {
     private EventRegistrationServiceImpl eventRegService;
 
     // Register an employee for an event
-    @PostMapping("/{employeeId}/{eventId}")
+    @PostMapping("registerEvent/{employeeId}/{eventId}")
     public ResponseEntity<String> registerForEvent(@PathVariable Long employeeId, @PathVariable Long eventId) {
         boolean success = eventRegService.registerForEvent(employeeId, eventId);
         if (success) {
@@ -33,7 +33,7 @@ public class EventRegistrationController {
     }
 
     // Get all registered events for an employee
-    @GetMapping("/employee/{employeeId}")
+    @GetMapping("/registeredEvents/{employeeId}")
     public ResponseEntity<List<EventRegistrationDto>> getRegisteredEvents(@PathVariable Long employeeId) {
         List<EventRegistrationDto> registeredEvents = eventRegService.getRegisteredEventsByEmployeeId(employeeId);
 		return ResponseEntity.ok(registeredEvents);

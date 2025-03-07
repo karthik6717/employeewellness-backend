@@ -19,7 +19,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+//@ToString
 @Table(name = "EmployeeWellness_batch2_ChallengeRegistration_karthikg")
 public class ChallengeRegistration {
 
